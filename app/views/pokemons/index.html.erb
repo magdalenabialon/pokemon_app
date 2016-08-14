@@ -1,0 +1,43 @@
+<h1>Pokemons</h1>
+
+<a href="/pokemons/new">New Pokemon</a>
+
+<br>
+<br>
+<br>
+<br>
+<br>
+
+<% @pokemons.each do |pokemon|%>
+
+  <div class = 'each-Pokemon'>
+    <p>
+
+      <%= pokemon.name %>
+      <a href="/pokemons/<%=pokemon.id%>">
+          <img src ="<%=pokemon.image_url%>">
+      </a>
+
+
+        <form action="/likes" method= 'post'>
+          <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
+          <input type="hidden" name ="pokemon_id" value = '<%=pokemon.id%>'>
+          <button>like pokemon</button>
+        </form>
+
+        <p>likes: <%= pokemon.likes.count %></p>
+
+
+        <form action="/pokemons/<%= pokemon.id %>" method = "post">
+          <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
+          <input type="hidden"  name = "_method" value = "delete">
+          <button>delete</button>
+        </form>
+
+    </p>
+  </div>
+  <br>
+  <br>
+  <br>
+
+<%end%>

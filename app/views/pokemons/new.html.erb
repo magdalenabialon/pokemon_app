@@ -1,0 +1,8 @@
+<h1>Catch new Pokemon :) </h1>
+
+<form action="/pokemons" method="post">
+  <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
+    <input type="text" name = 'name' placeholder = 'pokemon name'>
+    <input type="text" name = 'image_url' placeholder = 'pokemon image'>
+    <button>add new pokemon</button>
+</form>
