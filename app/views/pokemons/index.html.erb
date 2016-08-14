@@ -10,7 +10,7 @@
 
 <% @pokemons.each do |pokemon|%>
 
-  <div class = 'each-Pokemon'>
+  <div class = 'each-Pokemon' data-id="<%=pokemon.id%>">
     <p>
 
       <%= pokemon.name %>
@@ -25,7 +25,11 @@
           <button>like pokemon</button>
         </form>
 
-        <p>likes: <%= pokemon.likes.count %></p>
+
+        <button class = 'js-like'>js_like Pokemon</button>
+
+
+        <p>likes: <span class = 'likes-count'><%= pokemon.likes.count %></span></p>
 
 
         <form action="/pokemons/<%= pokemon.id %>" method = "post">
@@ -41,3 +45,24 @@
   <br>
 
 <%end%>
+
+
+
+<script>
+
+$('.js-like').on('click', function(event){
+
+   var $pokemonDiv = $(event.target).closest('.each-Pokemon');
+   var pokemonId = $pokemonDiv.data('id');
+   var $likeCountSpan =  $pokemonDiv.find('.likes-count');
+
+  $.ajax( {
+    url: 'api/likes',
+    data: {pokemon_id: pokemonId},
+    method: 'post'
+    } ).done(function(response){
+    $likeCountSpan.html(response.like_count);
+  })
+});
+
+</script>
