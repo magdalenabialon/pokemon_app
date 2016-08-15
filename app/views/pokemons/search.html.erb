@@ -51,6 +51,7 @@ $('#search-sglMv-form').on('submit', function(event){
   }).done(function(movie){
     console.log(movie);
     $('#singlePokemonMovie').html('THE SINGLE MOVIE: ' + movie.Title)
+    $('#singlePokemonMovie').html('<img class = "movie-poster" src="' + movie.Poster + '">');
   });
 
 });
@@ -73,6 +74,7 @@ $('#search-mltMv-form').on('submit', function(event){
 
       $('#pokemonMovies').append(pokeMovieDiv)
       $(pokeMovieDiv).append('THE MOVIES: ' + mv.Title +' \n')
+      $(pokeMovieDiv).append('<img class = "movie-poster" src="' + mv.Poster + '">');
     })
 
   });
