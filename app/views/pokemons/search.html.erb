@@ -10,11 +10,19 @@
 </div>
 
 
+
+
 <div id = "pokemon-fewEgz">
+<button class = "allDelBtn">DELETE all</button>
 </div>
 
 
+
+
 <script>
+
+//              SEARCH pokemons from API
+
 $('#search-form').on('submit', function(event){
   event.preventDefault();
 
@@ -31,6 +39,7 @@ $('#search-form').on('submit', function(event){
 });
 
 
+//             GET pokemons from API
 
 $.ajax({
   url: "http://pokeapi.co/api/v2/pokemon/"
@@ -39,13 +48,50 @@ $.ajax({
   pokemon.results.forEach(function(pokemon_api) {
 
     var pokemonDiv = $('<div>', {'class': 'pokemon-div'});
-    var deleteBtn = $('<button>', {'id': 'deleteBtn'});
+    var deleteButton = $('<button>', {'id': 'deleteBtn'});
     $('#pokemon-fewEgz').append(pokemonDiv)
-    pokemonDiv.append(deleteBtn)
     pokemonDiv.append(pokemon_api.name +' \n')
+    pokemonDiv.append(deleteButton)
+
+//               DELETE SINGLE display pokemons from API
+
+    deleteButton.on('click', function(event){
+      var $pokemonsDiv = $(event.target).closest('.pokemon-div');
+      $pokemonsDiv.remove();
+    })
 
   })
+});
+
+
+
+//               DELETE ALL display pokemons from API
+
+$('.allDelBtn').on('click', function(event){
+  // event.preventDefault();
+  console.log('delete all of this')
+
+  var $pokeDivDelete = $(event.target).closest('#pokemon-fewEgz');
+    $pokeDivDelete.remove();
 
 });
+
+
+
+//               DELETE SINGLE display pokemons from API
+
+// $(document).ready(function() {
+//   $('#deleteBtn').on('click', function(event){
+//     event.preventDefault();
+//     console.log('delete each of this')
+//
+//     var $pokemonsDiv = $(event.target).closest('#pokemon-fewEgz');
+//
+//     var pokemonDiv = $('.pokemon-div')
+//     var $deleteDiv =  $pokemonsDiv.find(pokemonDiv);
+//       $pokemonsDiv.remove();
+//   });
+// })
+
 
 </script>
