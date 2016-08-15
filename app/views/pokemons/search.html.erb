@@ -1,15 +1,32 @@
 
-
-<form id = 'search-form' action="/results">
-  <input id = 'input-bx' type="text" name = "pokemon">
-  <button id = 'search-btn' >search from api</button>
+<form id = 'search-sglMv-form' action="/results">
+  <input id = 'sgl-mv-input' type="text" name = "pokemon" placeholder="single movie">
+  <button id = 'search-btn' >search pokemon movie from api</button>
 </form>
 
+<br>
 
-<div id = "pokemon-info">
+<div id = "singlePokemonMovie">
+</div>
+
+<br>
+
+
+
+<form id = 'search-mltMv-form' action="/results">
+  <input id = 'mlt-mv-input' type="text" name = "pokemon" placeholder="multiple movies">
+  <button id = 'search-btn' >search pokemon movies from api</button>
+</form>
+
+<br>
+
+<div id = "pokemonMovies">
 </div>
 
 
+
+<br>
+<br>
 
 
 <div id = "pokemon-fewEgz">
@@ -21,21 +38,44 @@
 
 <script>
 
-//              SEARCH pokemons from API
+//              SEARCH pokemon SINGLE movie from API
 
-$('#search-form').on('submit', function(event){
+$('#search-sglMv-form').on('submit', function(event){
   event.preventDefault();
 
-  var pokeName = $('#input-bx').val();
+  var pokeMovie = $('#sgl-mv-input').val();
   // console.log(title);
   $.ajax({
-    url: "http://pokeapi.co/api/v2/pokemon/results[0]"+pokeName
+    url: "http://www.omdbapi.com/?t="+pokeMovie
     // method: 'get'
-  }).done(function(pokemon){
-    console.log(pokemon);
-    $('#pokemon-info').html(pokemon.name)
+  }).done(function(movie){
+    console.log(movie);
+    $('#singlePokemonMovie').html('THE SINGLE MOVIE: ' + movie.Title)
   });
 
+});
+
+
+//              SEARCH pokemon MOVIES from API
+
+$('#search-mltMv-form').on('submit', function(event){
+  event.preventDefault();
+
+  var pokeMovies = $('#mlt-mv-input').val();
+  // console.log(title);
+  $.ajax({
+    url: "http://www.omdbapi.com/?s="+pokeMovies
+    // method: 'get'
+  }).done(function(movie){
+    console.log(movie);
+    movie.Search.forEach(function(mv){
+      var pokeMovieDiv = $('<div>', {'class': 'poke-movie-div'});
+
+      $('#pokemonMovies').append(pokeMovieDiv)
+      $(pokeMovieDiv).append('THE MOVIES: ' + mv.Title +' \n')
+    })
+
+  });
 });
 
 
@@ -49,8 +89,10 @@ $.ajax({
 
     var pokemonDiv = $('<div>', {'class': 'pokemon-div'});
     var deleteButton = $('<button>', {'id': 'deleteBtn'});
+
     $('#pokemon-fewEgz').append(pokemonDiv)
     pokemonDiv.append(pokemon_api.name +' \n')
+
     pokemonDiv.append(deleteButton)
 
 
