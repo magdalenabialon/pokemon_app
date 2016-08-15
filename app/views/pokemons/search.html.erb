@@ -53,6 +53,7 @@ $.ajax({
     pokemonDiv.append(pokemon_api.name +' \n')
     pokemonDiv.append(deleteButton)
 
+
 //               DELETE SINGLE display pokemons from API
 
     deleteButton.on('click', function(event){
@@ -76,22 +77,6 @@ $('.allDelBtn').on('click', function(event){
 
 });
 
-
-
-//               DELETE SINGLE display pokemons from API
-
-// $(document).ready(function() {
-//   $('#deleteBtn').on('click', function(event){
-//     event.preventDefault();
-//     console.log('delete each of this')
-//
-//     var $pokemonsDiv = $(event.target).closest('#pokemon-fewEgz');
-//
-//     var pokemonDiv = $('.pokemon-div')
-//     var $deleteDiv =  $pokemonsDiv.find(pokemonDiv);
-//       $pokemonsDiv.remove();
-//   });
-// })
 
 
 </script>
