@@ -27,6 +27,9 @@ class PokemonsController < ApplicationController
     redirect_to '/pokemons'
   end
 
+  def results
+    render :search
+  end
 
   def show
     @pokemon = Pokemon.find(params[:id])
@@ -40,6 +43,9 @@ class PokemonsController < ApplicationController
     @pokemon.save
     redirect_to '/pokemons'
   end
+
+
+
 
 
 end

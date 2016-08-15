@@ -1,0 +1,51 @@
+
+
+<form id = 'search-form' action="/results">
+  <input id = 'input-bx' type="text" name = "pokemon">
+  <button id = 'search-btn' >search from api</button>
+</form>
+
+
+<div id = "pokemon-info">
+</div>
+
+
+<div id = "pokemon-fewEgz">
+</div>
+
+
+<script>
+$('#search-form').on('submit', function(event){
+  event.preventDefault();
+
+  var pokeName = $('#input-bx').val();
+  // console.log(title);
+  $.ajax({
+    url: "http://pokeapi.co/api/v2/pokemon/results[0]"+pokeName
+    // method: 'get'
+  }).done(function(pokemon){
+    console.log(pokemon);
+    $('#pokemon-info').html(pokemon.name)
+  });
+
+});
+
+
+
+$.ajax({
+  url: "http://pokeapi.co/api/v2/pokemon/"
+  // method: 'get'
+}).done(function(pokemon){
+  pokemon.results.forEach(function(pokemon_api) {
+
+    var pokemonDiv = $('<div>', {'class': 'pokemon-div'});
+    var deleteBtn = $('<button>', {'id': 'deleteBtn'});
+    $('#pokemon-fewEgz').append(pokemonDiv)
+    pokemonDiv.append(deleteBtn)
+    pokemonDiv.append(pokemon_api.name +' \n')
+
+  })
+
+});
+
+</script>
