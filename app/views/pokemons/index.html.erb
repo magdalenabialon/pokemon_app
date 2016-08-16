@@ -1,66 +1,68 @@
-<h1>Pokemons</h1>
-
-<a href="/pokemons/new">New Pokemon</a>
 <br>
-<a href="pokemons/search">Search for Pokemon in api</a>
-
+<a href="/pokemons/new">&#9940;  CREATE NEW Pokemon</a>
 <br>
+<a href="pokemons/search">&#128269;  SEARCH FOR Pokemon in API</a>
+
 <br>
 <br>
 <br>
 <br>
-
-<% @pokemons.each do |pokemon|%>
-
-  <div class = 'each-Pokemon' data-id="<%=pokemon.id%>">
-    <p>
-
-      <%= pokemon.name %>
-      <a href="/pokemons/<%=pokemon.id%>">
-          <img src ="<%=pokemon.image_url%>">
-      </a>
+<br>
 
 
-        <form action="/likes" method= 'post'>
-          <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
-          <input type="hidden" name ="pokemon_id" value = '<%=pokemon.id%>'>
-          <button>like pokemon</button>
-        </form>
+<div class = "all-Pokemons">
+  <% @pokemons.each do |pokemon|%>
+
+    <div class = "each-Pokemon" data-id="<%=pokemon.id%>">
 
 
-        <button class = 'js-like'>js_like Pokemon</button>
+        <div class = "pok-name-image">
+          <a href="/pokemons/<%=pokemon.id%>">
+              <img src ="<%=pokemon.image_url%>">
+          </a>
+          <%= pokemon.name %>
+
+          <form action="/pokemons/<%= pokemon.id %>" method = "post">
+            <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
+            <input type="hidden"  name = "_method" value = "delete">
+            <button>delete</button>
+          </form>
+
+        </div>
 
 
-        <p>likes: <span class = 'likes-count'><%= pokemon.likes.count %></span></p>
+        <div class = "pok-Like-buttons">
+            <form action="/likes" method= "post">
+              <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
+              <input type="hidden" name ="pokemon_id" value = "<%=pokemon.id%>">
+              <button>like</button>
+            </form>
+
+            <button class = "js-like">js_like</button>
+
+            <p>likes: <span class = "likes-count"><%= pokemon.likes.count %></span></p>
+        </div>
 
 
-        <form action="/pokemons/<%= pokemon.id %>" method = "post">
-          <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
-          <input type="hidden"  name = "_method" value = "delete">
-          <button>delete</button>
-        </form>
+    </div>
 
-    </p>
-  </div>
-  <br>
-  <br>
-  <br>
 
-<%end%>
+  <%end%>
+</div>
 
 
 <!-- <script>
 
-$('.js-like').on('click', function(event){
+$(".js-like").on("click", function(event){
 
-   var $pokemonDiv = $(event.target).closest('.each-Pokemon');
-   var pokemonId = $pokemonDiv.data('id');
-   var $likeCountSpan =  $pokemonDiv.find('.likes-count');
+   var $pokemonDiv = $(event.target).closest(".each-Pokemon");
+   var pokemonId = $pokemonDiv.data("id");
+   var $likeCountSpan =  $pokemonDiv.find(".likes-count");
 
   $.ajax( {
-    url: 'api/likes',
+    url: "api/likes",
     data: {pokemon_id: pokemonId},
-    method: 'post'
+    method: "post"
     } ).done(function(response){
     $likeCountSpan.html(response.like_count);
   })

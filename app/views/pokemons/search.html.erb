@@ -7,6 +7,8 @@
 <br>
 
 <div id = "singlePokemonMovie">
+  <p id = "poke-mv-title"></p>
+  <p id = "poke-mv-poster"></p>
 </div>
 
 <br>
@@ -50,8 +52,8 @@ $('#search-sglMv-form').on('submit', function(event){
     // method: 'get'
   }).done(function(movie){
     console.log(movie);
-    $('#singlePokemonMovie').html('THE SINGLE MOVIE: ' + movie.Title)
-    $('#singlePokemonMovie').html('<img class = "movie-poster" src="' + movie.Poster + '">');
+    $('#poke-mv-title').html('THE SINGLE MOVIE: ' + movie.Title)
+    $('#poke-mv-poster').html('<img class = "movie-poster" src="' + movie.Poster + '">');
   });
 
 });
@@ -71,10 +73,14 @@ $('#search-mltMv-form').on('submit', function(event){
     console.log(movie);
     movie.Search.forEach(function(mv){
       var pokeMovieDiv = $('<div>', {'class': 'poke-movie-div'});
+      var pokeMovieTitle = $('<p>', {'class': 'poke-movie-title'});
+      var pokeMoviePoster = $('<p>', {'class': 'poke-movie-poster'});
 
-      $('#pokemonMovies').append(pokeMovieDiv)
-      $(pokeMovieDiv).append('THE MOVIES: ' + mv.Title +' \n')
-      $(pokeMovieDiv).append('<img class = "movie-poster" src="' + mv.Poster + '">');
+      $('#pokemonMovies').append(pokeMovieDiv);
+      $(pokeMovieDiv).append(pokeMovieTitle);
+      $(pokeMovieDiv).append(pokeMoviePoster);
+      $(pokeMovieTitle).html('THE MOVIES: ' + mv.Title +' \n');
+      $(pokeMoviePoster).html('<img class = "movie-poster" src="' + mv.Poster + '">');
     })
 
   });
@@ -90,7 +96,7 @@ $.ajax({
   pokemon.results.forEach(function(pokemon_api) {
 
     var pokemonDiv = $('<div>', {'class': 'pokemon-div'});
-    var deleteButton = $('<button>', {'id': 'deleteBtn'});
+    var deleteButton = $(("<span>" + '\u274C'+ "</span>"), {'id': 'deleteBtn'});
 
     $('#pokemon-fewEgz').append(pokemonDiv)
     pokemonDiv.append(pokemon_api.name +' \n')
