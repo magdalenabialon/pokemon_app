@@ -5,11 +5,15 @@ class PokemonsController < ApplicationController
     render :index
   end
 
+  def current_user
+    User.find(session[:user_id]) #session is like a receipt.  Need the receipt to prove this is the user they say they are
+  end
 
   def create
     @pokemon = Pokemon.new
     @pokemon.name = params[:name]
     @pokemon.image_url = params[:image_url]
+    @pokemon.user_id = current_user.id
 
     if @pokemon.save
       redirect_to '/pokemons'   #redirect go to routes
