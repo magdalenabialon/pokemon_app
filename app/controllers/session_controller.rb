@@ -12,10 +12,14 @@ class SessionController < ApplicationController
     end
   end
 
+  def current_user
+    User.find(session[:user_id])
+  end
+
 
   def destroy
    session[:user_id] = nil
-   redirect_to 'session/new'
+   redirect_to '/pokemons'
  end
 
 

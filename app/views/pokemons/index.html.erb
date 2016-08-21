@@ -1,5 +1,9 @@
 <br>
+
+<%if logged_in?%>
 <a href="/pokemons/new">&#9940;  CREATE NEW Pokemon</a>
+<%end%>
+
 <br>
 <a href="pokemons/search">&#128269;  SEARCH FOR Pokemon in API</a>
 
@@ -26,11 +30,6 @@
           </a>
           <%= pokemon.name %>
 
-          <form action="/pokemons/<%= pokemon.id %>" method = "post">
-            <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
-            <input type="hidden"  name = "_method" value = "delete">
-            <button>delete</button>
-          </form>
 
         </div>
 

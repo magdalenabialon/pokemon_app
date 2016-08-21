@@ -1,13 +1,14 @@
 class PokemonsController < ApplicationController
 
+  def current_user
+    User.find(session[:user_id])
+  end
+
   def index
     @pokemons = Pokemon.all
     render :index
   end
 
-  def current_user
-    User.find(session[:user_id]) #session is like a receipt.  Need the receipt to prove this is the user they say they are
-  end
 
   def create
     @pokemon = Pokemon.new
