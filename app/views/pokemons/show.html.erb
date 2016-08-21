@@ -17,7 +17,7 @@
     <form action="/pokemons/<%= @pokemon.id %>" method = "post">
       <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
       <input type="hidden"  name = "_method" value = "delete">
-      <button>delete</button>
+      <button>delete pokemon</button>
     </form>
 <%end%>
 
@@ -37,7 +37,7 @@
   <form action="/comments/<%= comment.id %>" method = "post">
     <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
     <input type="hidden"  name = "_method" value = "delete">
-    <button>delete</button>
+    <button>delete comment</button>
   </form>
 
 
