@@ -6,6 +6,7 @@
 body {
   background-color: cyan;
   box-sizing: border-box;
+  text-align: center;
 }
 
 .all-Pokemons {
@@ -45,4 +46,23 @@ img {
 
 a {
   text-decoration: none;
+}
+
+.poke-movie-poster {
+  width: 80%;
+  text-align: center;
+}
+
+.poke-movie-div, p {
+  display: inline-block;
+  width: 33%;
+}
+
+#pokemonMovies {
+  width: 90%;
+  text-align: center;
+  margin: 0 auto;
+}
+.poke-img {
+  width: 60%;
 }

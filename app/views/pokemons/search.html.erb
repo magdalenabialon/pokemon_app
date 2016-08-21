@@ -7,8 +7,8 @@
 <br>
 
 <div id = "singlePokemonMovie">
-  <p id = "poke-mv-title"></p>
-  <p id = "poke-mv-poster"></p>
+  <h6 id = "poke-mv-title"></p>
+  <h6 id = "poke-mv-poster"></p>
 </div>
 
 <br>
@@ -73,7 +73,7 @@ $('#search-mltMv-form').on('submit', function(event){
     console.log(movie);
     movie.Search.forEach(function(mv){
       var pokeMovieDiv = $('<div>', {'class': 'poke-movie-div'});
-      var pokeMovieTitle = $('<p>', {'class': 'poke-movie-title'});
+      var pokeMovieTitle = $('<h6>', {'class': 'poke-movie-title'});
       var pokeMoviePoster = $('<p>', {'class': 'poke-movie-poster'});
 
       $('#pokemonMovies').append(pokeMovieDiv);
